@@ -15,17 +15,15 @@
 #'
 #' @param n number of observations
 #'
-#' @param xMin vector with the minimum values of the range of the random variable
+#' @param xMin  the minimum values of the range of the random variable
 #'
-#' @param xMax vector with the maximum values of the range of the random variable
+#' @param xMax the maximum values of the range of the random variable
 #'
-#' @param xMode vector with the modes of the random variable
+#' @param xMode the mode of the random variable
 #'
 #' @return \code{dtriang} gives the density, \code{ptriang} gives the distribution function,
 #' \code{qtriang} gives the quantile function, and \code{rtriang} generates random deviates.
 #'
-#' The lengths of the input vectors (except \code{n}) must be all equal except when their length is
-#' 1. Otherwise \code{NA}s are produced.
 #'
 #' @seealso \code{\link{Distributions}} for other distributions
 #'
@@ -34,10 +32,6 @@
 #' curve(ptriang(x, 0, 3, 1), xlim = c(0, 3))
 #' curve(qtriang(x, 0, 3, 1), xlim = c(0, 1))
 #' hist(rtriang(1e6, 0, 3, 1), breaks = seq(0, 3, by = 0.01))
-#'
-#' @rdname triang
-#' @export
-#'
 #'
 #' @rdname triang
 #' @export
@@ -115,7 +109,7 @@ rtriang <- function(n, xMin, xMax, xMode){
   mc[[1L]] <- qtriang
   mc[['n']] <- NULL
   mc[['q']] <- u
-  output <- eval(mc)
+  
+  output <- eval(mc, sys.frame(sys.parent()))
   return(output)
 }
-
